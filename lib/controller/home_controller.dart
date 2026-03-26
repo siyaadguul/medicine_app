@@ -7,6 +7,11 @@ class HomeController extends GetxController{
   final RxInt currentIndex=0.obs;
   final supabase=Supabase.instance.client;
   RxList<CategoryModel> categories=<CategoryModel>[
+    CategoryModel(id: '1', name: "Essential Oils", imagePath: "assets/products/product1.png"),
+    CategoryModel(id: '2', name: "Vitamins", imagePath: "assets/products/product2.png"),
+    CategoryModel(id: '3', name: "Pills", imagePath: "assets/products/product3.png"),
+    CategoryModel(id: '4', name: "Syrups", imagePath: "assets/products/product4.png"),
+    CategoryModel(id: '5', name: "Creams", imagePath: "assets/products/product5.png"),
   ].obs;
 
   final RxList<ItemModel> bestSellerProducts=<ItemModel>[
@@ -16,29 +21,13 @@ class HomeController extends GetxController{
     ItemModel(id: "4", name: "Cough Syrup ", imagePath: "assets/products/product4.png", description: "Natural Cough Syrup", price: 29.99, category: "Suplement"),
 
     ].obs;
-  Future<void> getCategories() async{
-    final response=await supabase.from("categories").select("category_id,name,image_path");
-    if(response !=null){
-      categories.value=response.map((category)=>CategoryModel.fromJson(category)).toList();
-    }
 
-  }
 
-  @override
-  void onInit() {
-    // TODO: implement onInit
-    super.onInit();
-    getCategories();
-  }
 
   void updateSelectedIndex(int index){
     currentIndex.value=index;
   }
 
-  //STeps
-//Step1: fetch from Supabase
-//Step2:Json Converter Model;
-//step3:Map Fetched to List
 
 
 }

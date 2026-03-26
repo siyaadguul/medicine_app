@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:medicine_store/models/category_model.dart';
 import 'package:medicine_store/models/itemModel.dart';
 import 'package:medicine_store/widgets/custom_nav_bar.dart';
-import 'package:flutter_skeleton_ui/flutter_skeleton_ui.dart';
 class Home extends StatelessWidget {
    Home({super.key});
   final HomeController _homeController=Get.put(HomeController());
@@ -154,94 +153,13 @@ class Home extends StatelessWidget {
                 ),
                 SizedBox(
                   height: 90,
-                  child: Obx((){
-                    return Skeleton(
-                        isLoading: _homeController.categories.isEmpty,
-                        skeleton: Row(
-                          children: [
-                            Container(
-                              margin: EdgeInsets.only(right: 16),
-                              width: 80,
-                              padding: EdgeInsets.all(10),
-                              decoration: BoxDecoration(
-                                  color: Colors.green.shade100,
-                                  shape: BoxShape.circle,
-                                  boxShadow: [
-                                    BoxShadow(
-                                        color: Colors.grey.shade300,
-                                        blurRadius: 8,
-                                        offset: Offset(0,2,)
-                                    )
-                                  ]
-
-                              ),
-
-                            ),
-                            Container(
-                              margin: EdgeInsets.only(right: 16),
-                              width: 80,
-                              padding: EdgeInsets.all(10),
-                              decoration: BoxDecoration(
-                                  color: Colors.green.shade100,
-                                  shape: BoxShape.circle,
-                                  boxShadow: [
-                                    BoxShadow(
-                                        color: Colors.grey.shade300,
-                                        blurRadius: 8,
-                                        offset: Offset(0,2,)
-                                    )
-                                  ]
-
-                              ),
-
-                            ),
-                            Container(
-                              margin: EdgeInsets.only(right: 16),
-                              width: 80,
-                              padding: EdgeInsets.all(10),
-                              decoration: BoxDecoration(
-                                  color: Colors.green.shade100,
-                                  shape: BoxShape.circle,
-                                  boxShadow: [
-                                    BoxShadow(
-                                        color: Colors.grey.shade300,
-                                        blurRadius: 8,
-                                        offset: Offset(0,2,)
-                                    )
-                                  ]
-
-                              ),
-
-                            ),
-                            Container(
-                              margin: EdgeInsets.only(right: 16),
-                              width: 80,
-                              padding: EdgeInsets.all(10),
-                              decoration: BoxDecoration(
-                                  color: Colors.green.shade100,
-                                  shape: BoxShape.circle,
-                                  boxShadow: [
-                                    BoxShadow(
-                                        color: Colors.grey.shade300,
-                                        blurRadius: 8,
-                                        offset: Offset(0,2,)
-                                    )
-                                  ]
-
-                              ),
-
-                            ),
-
-                          ],
-                        ),
-                        child: ListView.builder(
-                            itemCount: _homeController.categories.length,
-                            scrollDirection: Axis.horizontal,
-                            itemBuilder: (context,index){
-                              final category=_homeController.categories[index];
-                              return _BuildCategory(category);
-                            })) ;
-                  })
+                  child: ListView.builder(
+                    itemCount: _homeController.categories.length,
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (context,index){
+                      final category=_homeController.categories[index];
+                      return _BuildCategory(category);
+                      })
                 ),
                 SizedBox(height: 10,),
                 Row(
@@ -295,7 +213,7 @@ class Home extends StatelessWidget {
 
       ),
       child: Center(
-        child: Image.network(category.imagePath,height: 50,),
+        child: Image.asset(category.imagePath,height: 50,),
       ),
     );
   }
